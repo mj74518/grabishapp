@@ -1,0 +1,60 @@
+.dropdown:hover>.dropdown-menu {
+    display: block;
+  }
+
+  .pagination a{
+    background-color:#2d3436;
+    color:white;
+    border-color: #2d3436;
+}
+
+.pagination .active{
+    background-color:#3742fa;
+    color:white;
+    border-color: #3742fa;
+}
+
+.movielogo{
+    width:16%;
+    cursor:pointer;
+    
+    -webkit-transition: all 250ms ease-in-out;
+	-moz-transition: all 250ms ease-in-out;
+	-ms-transition: all 250ms ease-in-out;
+	transition: all 250ms ease-in-out;
+}
+
+
+
+.movielogo:hover {
+	-webkit-filter: brightness(50%);
+	-moz-filter: brightness(50%);
+	-ms-filter: brightness(50%);
+	filter: brightness(50%);
+}
+
+.movielogo2{
+    width:130px;
+    height:190px;
+    cursor:pointer;
+    
+    -webkit-transition: all 250ms ease-in-out;
+	-moz-transition: all 250ms ease-in-out;
+	-ms-transition: all 250ms ease-in-out;
+	transition: all 250ms ease-in-out;
+}
+
+
+
+.movielogo2:hover {
+	-webkit-filter: brightness(50%);
+	-moz-filter: brightness(50%);
+	-ms-filter: brightness(50%);
+	filter: brightness(50%);
+}
+
+.movielinks{
+    text-decoration: none;
+    color: cornsilk;
+}
+

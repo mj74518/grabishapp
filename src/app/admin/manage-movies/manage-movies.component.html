@@ -1,0 +1,79 @@
+<div class="d-flex" id="wrapper">
+    <app-sidebar></app-sidebar>
+    <div id="page-content-wrapper">
+        <app-adminheader></app-adminheader>
+        <div class="container-fluid">
+            <h1 class="mt-4">Manage Movies</h1>
+            <!-- <button class="btn btn-default" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessage" placement="left" (confirm)="removeListElement(i)" (cancel)="cancelClicked=true">ClickMe</button> -->
+            <div class="form-group has-search">
+                <span class="fa fa-search form-control-feedback"></span>
+                <input type="text" class="form-control" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search">
+            </div>
+            <table style="cursor: pointer;" class="table table-hover table-responsive">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">PosterImg</th>
+                        <th scope="col">Movie-Name</th>
+                        <th scope="col">Movie-Type</th>
+                        <th scope="col">Date-Added</th>
+                        <!-- <th scope="col">Time</th> -->
+                        <th scope="col">Rating</th>
+                        <!-- <th scope="col">Plot</th>
+                        <th scope="col">Genres</th> -->
+                        <th scope="col">Category</th>
+                        <!-- <th scope="col">Stars</th> -->
+                        <th scope="col">Language</th>
+                        <th scope="col">Trailer</th>
+                        <th colspan="4" style="text-align:center">Action</th>
+                    </tr>
+                </thead>
+                <tbody style="background-color:cornsilk;">
+                   
+                        <tr *ngFor="let val of Movies | filter:searchText | 
+                    paginate: { id: 'listing_pagination', itemsPerPage: 4, currentPage: page, totalItems:totalRecords } ; let i = index">
+                        <th>{{i+1}}</th>
+                        <td>
+                            <img style="width:50px" src="{{val.posterImg}}" alt="">
+                        </td>
+                        <td>{{val.itmName}}</td>
+                        <td>{{val.type.typeName}}</td>
+                        <td>{{val.dateAdded | date : "mediumDate"}}</td>
+                        <!-- <td>{{val.timeAdded}}</td> -->
+                        <td>{{val.imdbRatings}}</td>
+                        <!-- <td>{{val.showDesc}}</td>
+                        <td>{{val.generes}}</td> -->
+                        <td>{{val.category}}</td>
+                        <!-- <td>{{val.stars}}</td> -->
+                        <td>{{val.itemLang}}</td>
+                        <td>
+                            <a href="{{val.trailerUrl}}" title="View Trailer">
+                                <i style="color: red;" class="fa fa-youtube-play" aria-hidden="true"></i>
+                            </a>
+                        </td>
+
+                        <td>
+                            <a href='admin/update-item/{{val.itmId}}' data-toggle="tooltip" data-placement="top" title="Update Information"><span class="fa fa-edit" style=" color:blue; "></span></a>
+                        </td>
+                        <td>
+                            <span class="fa fa-trash" style="color:red" (click)="onDelete(val.itmId)"></span>
+                        </td>
+                        <td>
+                            <a href='admin/edit-movie/{{val.itmId}}' data-toggle="tooltip" data-placement="top" title="Add Links">
+                                <button class="btn btn-danger btn-sm"><i class="fa fa-plus"></i> Add Link</button>
+                            </a>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td colspan="12" class="table-secondary">
+                        <pagination-controls id="listing_pagination" maxSize="5" directionLinks="True" (pageChange)="page =$event">
+
+                        </pagination-controls>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

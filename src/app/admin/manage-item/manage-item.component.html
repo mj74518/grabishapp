@@ -1,0 +1,135 @@
+<div class="d-flex" id="wrapper">
+    <app-sidebar></app-sidebar>
+    <div id="page-content-wrapper">
+        <app-adminheader></app-adminheader>
+        <div class="container">
+            <div class="justify-content-center" style=" padding: 2% ; border-radius: 5px;">
+
+                <div style="background-color:floralwhite; padding: 2% ; border-radius: 5px;" id="edit">
+                    <h4 style="text-align: center;">Add Item</h4> <br>
+
+                    <form [formGroup]="service.formAdditem" autocomplete="off" (submit)="onSubmit()">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label>Item Name</label>
+                                <input type="text" class="form-control" formControlName="Itemname">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>ImDb Ratings</label>
+                                <input type="number" min="0" step="0.1" max="10" class="form-control" formControlName="Itemrating">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>Item Type</label>
+                                <div class="form-group">
+                                    <select class="custom-select" formControlName="Itemtype">
+                                        <option value="1">Hollywood</option>
+                                        <option value="2">Bollywood</option>
+                                        <option value="3">Web Series</option>
+                                        <option value="4">International TvShow</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-row">
+                            <div class="form-group col-sm-6 my-1">
+                                <label>Genres</label>
+                                <div class="input-group">
+                                    <select class="custom-select" formControlName="Itemgeneres" multiple>
+                                        <option value="Action">Action</option>
+                                        <option value="Adventure">Adventure</option>
+                                        <option value="Animated">Animated</option>
+                                        <option value="Biography">Biography</option>
+                                        <option value="Comedy">Comedy</option>
+                                        <option value="Crime">Crime</option>
+                                        <option value="Drama">Drama</option>
+                                        <option value="Family">Family</option>
+                                        <option value="Fantasy">Fantasy</option>
+                                        <option value="Horror">Horror</option>
+                                        <option value="Mystery">Mystery</option>
+                                        <option value="Romance">Romance</option>
+                                        <option value="Sci-Fi">Sci-Fi</option>
+                                        <option value="Sport">Sport</option>
+                                        <option value="Thriller">Thriller</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6 my-1">
+                                <label>Stars</label>
+                                <input type="text" class="form-control" formControlName="Itemstars" placeholder="Stars">
+                                <small id="" class="form-text text-muted">For Multiple Stars Put <b>','</b> for seperation if any</small>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-sm-6 my-1">
+                                <label for="inputEmail4">Item Description</label>
+                                <textarea class="form-control" name="" id="" cols="30" rows="10" formControlName="Itemdesc"></textarea>
+                            </div>
+                            <div class="form-group col-sm-6 my-1">
+
+                                <label for="inputEmail4">Item Poster</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="fa fa-file-image-o" aria-hidden="true"></i></div>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Copy & Paste ImDb Link." formControlName="Itemposter">
+                                </div>
+
+                                <div class="input-group">
+                                    <img style="padding:0% 8%" src="http://placehold.it/130x210" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+
+                            <div class="form-group col-md-3">
+                                <label>Item Quality</label>
+                                <div class="form-group">
+                                    <select class="custom-select" formControlName="Itemcategory">
+                                        <option selected>Choose...</option>
+                                        <option value="BLURAY">BLURAY</option>
+                                        <option value="WEB-DL">WEB-DL</option>
+                                        <option value="BRRIP">BRRIP</option>
+                                        <option value="WEB-RIP">WEB-RIP</option>
+                                        <option value="WEB-HD">WEB-HD</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>Item Language</label>
+                                <div class="input-group">
+                                    <select class="custom-select" formControlName="Itemlang" multiple>
+                                        <option value="ENGLISH">English</option>
+                                        <option value="HINDI">Hindi</option>
+                                        <option value="JAPANESE">Japanese</option>
+                                        <option value="KOREAN">Korean</option>
+                                        <option value="TAMIL">Tamil</option>
+                                        <option value="TELUGU">Telugu</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6 my-1">
+                                <label class="sr-only">Trailer Youtube Link</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i style="color:red" class="fa fa-youtube-play" aria-hidden="true"></i></div>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Trailer URL" formControlName="Itemtrailer">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-inline row my-4 justify-content-center">
+                            <input type="reset" class="btn btn-secondary" value="Reset">&nbsp;
+                            <button type="submit" class="btn btn-success">Save Changes</button>
+                            <!-- [disabled]="!service.formAdditem.valid" -->
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

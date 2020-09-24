@@ -1,0 +1,249 @@
+<div class="d-flex" id="wrapper">
+    <app-sidebar></app-sidebar>
+    <div id="page-content-wrapper">
+        <app-adminheader></app-adminheader>
+        <div class="container-fluid">
+            <div class="justify-content-center" style=" padding: 2% ; border-radius: 5px;">
+
+
+                <div class="row" *ngIf="showInfo" style="background-color:floralwhite; padding: 2% ; border-radius: 5px;">
+
+                    <div class="col col-md-12">
+
+                        <div style="padding: 1% 4% 2% 4%; border: 1px solid #ccc!important;">
+                            <h4 style="text-align: center;">Update Links</h4> <br>
+
+
+                            <div style="padding: 0% 2% 2% 2%;">
+                                <div class="row" style="border: 1px solid #ccc!important; padding: 2% 1% 2% 1%;">
+                                    <div class="col col-md-4">
+                                        <a class="" title="{{showInfo.itmName}}" href="{{showInfo.posterImg}}">
+                                            <img style="width:180px; height:240px" src="{{showInfo.posterImg}}">
+                                        </a>
+                                    </div>
+                                    <div class="col col-md-8">
+                                        <div>
+                                            <h4>{{showInfo.itmName}} {{showInfo.category}}</h4>
+                                            <small class="post-meta">
+                                                            <span class="tie-date">
+                                                                <i class="fa fa-clock-o"></i> {{showInfo.dateAdded | date : "fullDate"}}
+                                                            </span>
+                                                        </small><br>
+                                            <small><i class="fa fa-folder"></i> {{showInfo.generes}}</small>
+                                            <br>
+                                            <hr>
+                                        </div>
+                                        <div>
+                                            {{showInfo.showDesc}}<br>
+                                            <span class=""><strong> Actors: </strong>{{showInfo.stars}}</span><br>
+                                        </div>
+
+                                    </div>
+                                </div><br>
+
+                                <div class="form-row">
+                                    <div class="col col-11">
+                                        <table style="text-align: center" class="table table-hover table-sm table-responsive-sm-md-lg">
+                                            <thead class="thead-dark">
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Season / Episode</th>
+                                                    <th scope="col">Quality</th>
+                                                    <th scope="col">Size</th>
+                                                    <!-- <th scope="col">Date Added</th> -->
+                                                    <th scope="col">Links</th>
+
+                                                    <th scope="col">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody style="background-color:cornsilk;">
+                                                <tr *ngFor="let val of showInfo['showLinks']; let i = index">
+                                                    <th>{{i+1}}</th>
+                                                    <td>S{{val.seasonNo}} E{{val.episodeNo}}</td>
+                                                    <td>{{val.showRes}}</td>
+                                                    <td>{{val.showSize}}</td>
+                                                    <!-- <td>{{val.dateAdded | date : "mediumDate"}}</td> -->
+                                                    <td>
+                                                        <span *ngIf="val.link1">
+                                                        <a href="{{val.link1}}" style="text-decoration: none;">
+                                                            <span *ngIf="val.link1.split('/')[2] == 'gdfiles.org'">
+                                                             
+                                                                    <img style="width:20px;" src="/assets/img/gdrive.png">
+                                                                    <!-- GDrive -->
+                                                           
+                                                            </span>
+                                                        <span *ngIf="val.link1.split('/')[2] == 'drive.google.com'">
+                                                              
+                                                                    <img style="width:20px;" src="/assets/img/gdrive.png">
+                                                                    <!-- GDrive -->
+                                                   
+                                                            </span>
+                                                        <span *ngIf="val.link1.split('/')[2] == 'mega.nz'">
+                                                           
+                                                                    <img style="width:20px;" src="/assets/img/mega-icon.png">
+                                                                    <!-- Mega -->
+                                                          
+                                                            </span>
+                                                        <span *ngIf="val.link1 != null
+                                                                            && val.link1.split('/')[2] != 'mega.nz' 
+                                                                            && val.link1.split('/')[2] != 'drive.google.com' 
+                                                                            && val.link1.split('/')[2] != 'gdfiles.org'">
+                                                                    <img style="width:20px;" src="/assets/img/others-icon-png-4.png">
+                                                                </span>
+                                                        </a>&nbsp;
+                                                        </span>
+                                                        <span *ngIf="val.link2">
+                                                        <a href="{{val.link2}}" style="text-decoration: none;">
+                                                            <span *ngIf="val.link2.split('/')[2] == 'gdfiles.org'">
+                                                         
+                                                                    <img style="width:20px;" src="/assets/img/gdrive.png">
+                                                                    <!-- GDrive -->
+                                                         
+                                                            </span>
+                                                        <span *ngIf="val.link2.split('/')[2] == 'drive.google.com'">
+                                                             
+                                                                    <img style="width:20px;" src="/assets/img/gdrive.png">
+                                                                    <!-- GDrive -->
+                                                         
+                                                            </span>
+                                                        <span *ngIf="val.link2.split('/')[2] == 'mega.nz'">
+                                                               
+                                                                    <img style="width:20px;" src="/assets/img/mega-icon.png">
+                                                                    <!-- Mega -->
+                                                              
+                                                            </span>
+                                                        <span *ngIf="val.link2 != null
+                                                                            && val.link2.split('/')[2] != 'mega.nz' 
+                                                                            && val.link2.split('/')[2] != 'drive.google.com' 
+                                                                            && val.link2.split('/')[2] != 'gdfiles.org'">
+                                                                    <img style="width:20px;" src="/assets/img/others-icon-png-4.png">
+                                                                </span>
+                                                        </a>&nbsp;
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <!-- <a href='admin/edit-link/{{val.slinkId}}'>
+                                                            <button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Edit Link">
+                                                            <span class="fa fa-pencil"></span>
+                                                            Edit
+                                                        </button>
+                                                        </a>&nbsp; -->
+                                                        
+                                                        <button class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete Episode Link">
+                                                            <span class="fa fa-trash" (click)="onDelete(val.slinkId)"> Remove</span>
+                                                        </button>
+                                                    </td>
+
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div><br>
+                            </div>
+
+
+                            <div style="border: 1px solid  #ccc!important;">
+                                <div style="padding:2% 4%;">
+                                    <h4>Add Links : </h4>
+                                    <form [formGroup]="service.formAddSlink" autocomplete="off" (submit)="onSubmit()">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-3">
+                                                <select class="form-control form-control-sm" name="" id="" formControlName="Season">
+                                                        <option value="1">Season 1</option>
+                                                        <option value="2">Season 2</option>
+                                                        <option value="3">Season 3</option>
+                                                        <option value="4">Season 4</option>
+                                                        <option value="5">Season 5</option>
+                                                        <option value="6">Season 6</option>
+                                                        <option value="7">Season 7</option>
+                                                    </select>
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <select class="form-control form-control-sm" name="" id="" formControlName="Episode">
+                                                <option value="1">Episode 1</option>
+                                                <option value="2">Episode 2</option>
+                                                <option value="3">Episode 3</option>
+                                                <option value="4">Episode 4</option>
+                                                <option value="5">Episode 5</option>
+                                                <option value="6">Episode 6</option>
+                                                <option value="7">Episode 7</option>
+                                                <option value="8">Episode 8</option>
+                                                <option value="9">Episode 9</option>
+                                                <option value="10">Episode 10</option>
+                                                <option value="11">Episode 11</option>
+                                                <option value="12">Episode 12</option>
+                                                <option value="13">Episode 13</option>
+                                                <option value="14">Episode 14</option>
+                                                <option value="15">Episode 15</option>
+                                            </select>
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <div class="form-group">
+                                                    <select class="form-control form-control-sm" name="" id="" formControlName="Showres">
+                                                    <option value="">Select Quality</option>
+                                                    <option value="480 x264">480 x264</option>
+                                                    <option value="480 x265">480 x265</option>
+                                                    <option value="720 x264">720 x264</option>
+                                                    <option value="720 x265">720 x265</option>
+                                                    <option value="1080 x264">1080 x264</option>
+                                                    <option value="1080 x265">1080 x265</option>
+                                                </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <div class="input-group">
+                                                    <input type="number" min="1" length="4" max="1022" class="form-control form-control-sm" placeholder="Size" formControlName="Showsize">
+                                                    <div class="input-group-append col-xs-1">
+                                                        <select class="form-control form-control-sm" name="" id="" formControlName="Resunit">
+                                                            <option value="MB">MB</option>
+                                                            <option value="GB">GB</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-10">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control form-control-sm" placeholder="Paste Link1 Here...." formControlName="Link1">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control form-control-sm" placeholder="Paste Link2 Here...." formControlName="Link2">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control form-control-sm" placeholder="Paste Link3 Here...." formControlName="Link3">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control form-control-sm" placeholder="Paste Link4 Here...." formControlName="Link4">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control form-control-sm" placeholder="Paste Link5 Here...." formControlName="Link5">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control form-control-sm" placeholder="Paste Link6 Here...." formControlName="Link6">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-1">
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-success btn-sm">Save</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

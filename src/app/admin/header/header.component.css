@@ -1,0 +1,16 @@
+.dropdown:hover>.dropdown-menu {
+    display: block;
+}
+
+.mynav>.nav-item {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.special-img {
+    position: relative;
+    top: -5px;
+    float: left;
+    left: -5px;
+    border-radius: 50%;
+}

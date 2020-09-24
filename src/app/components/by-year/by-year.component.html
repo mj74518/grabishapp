@@ -1,0 +1,32 @@
+<app-header></app-header>
+ <!-- /container -->
+
+ <div class="container" style="background-color: #1289A7;">
+    <div class="row" style="padding: 2%;">
+            <div class="col m-lg-12" style="background-color: #2c2c54; padding: 2%; border-radius: 4px;">
+                <div class="row">
+                <div class="col col-md-2" *ngFor="let val2 of data | filter:searchText | 
+                paginate: { id: 'listing_pagination', itemsPerPage: 180, currentPage: page, totalItems:totalRecords } ">
+                <span *ngIf="val2.typeId == '1' || val2.typeId == '2' || val2.typeId == '5'">
+                    <a class="movielinks" href="movie-description/{{val2.itmId}}"> 
+                    <img class="movielogo2" src="{{val2.posterImg}}">
+                    <p style="text-align: center;">{{val2.itmName }} {{val2.category}}</p>
+                    </a>
+                </span>
+                <span *ngIf="val2.typeId == '3' || val2.typeId == '4' || val2.typeId == '6'">
+                    <a class="movielinks" href="show-description/{{val2.itmId}}"> 
+                        <img class="movielogo2" src="{{val2.posterImg}}">
+                        <p style="text-align: center;">{{val2.itmName }} {{val2.category}}</p>
+                    </a>
+                </span>
+                </div>
+                
+                </div>
+                <nav style="border-top: 2px solid  tomato!important;"> 
+                    <pagination-controls id="listing_pagination" maxSize="5" directionLinks="True" (pageChange)="page =$event">
+                    </pagination-controls>
+                </nav>
+            </div>
+    </div>
+</div>
+<app-footer></app-footer>

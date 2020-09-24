@@ -1,0 +1,34 @@
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from 'src/app/shared/user.service';
+
+@Component({
+  selector: 'app-by-genre',
+  templateUrl: './by-genre.component.html',
+  styleUrls: ['./by-genre.component.css']
+})
+export class ByGenreComponent implements OnInit {
+
+  movieLatest;
+  searchText;
+  data: Array<any>;
+  totalRecords: string;
+  page: number=1;
+  constructor(private route: ActivatedRoute, private router: Router, private service: UserService) {
+    this.data = new Array<any>()
+  }
+
+  ngOnInit(): void {
+    const genre = this.route.snapshot.paramMap.get('genre');
+    console.log(genre);
+    this.service.getLDataBG(genre).subscribe((data) =>{
+      
+      this.data = data;
+      this.totalRecords=data.length;
+      //console.log(this.data);
+      // console.log(this.totalRecords);
+
+    })
+  }
+
+}

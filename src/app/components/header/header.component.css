@@ -1,0 +1,8 @@
+.dropdown:hover>.dropdown-menu {
+    display: block;
+  }
+
+.mynav>.nav-item{
+padding-left: 10px;
+padding-right: 10px;
+}

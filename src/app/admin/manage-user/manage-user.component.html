@@ -1,0 +1,123 @@
+<div class="d-flex" id="wrapper">
+    <app-sidebar></app-sidebar>
+    <div id="page-content-wrapper">
+        <app-adminheader></app-adminheader>
+        <div class="container-fluid">
+            <h1 class="mt-4">Manage Users</h1>
+            <div class="form-group has-search">
+                <span class="fa fa-search form-control-feedback"></span>
+                <input type="text" class="form-control" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search">
+            </div>
+            <table style="cursor: pointer;" class="table table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">User-Name</th>
+                        <th scope="col">Email-Id</th>
+                        <th scope="col">Verfication</th>
+                        <th scope="col">User-Type</th>
+                        <th colspan="3" style="text-align:center">Action</th>
+                    </tr>
+                </thead>
+                <tbody style="background-color:cornsilk;">
+                    <!-- <tr>
+                        <td>#AddNew</td>
+                        <td><input class="form-control form-control-sm" type="text"></td>
+                        <td><input class="form-control form-control-sm" type="email" name="" id=""></td>
+                        <td><select class="form-control form-control-sm" name="" id="">
+                            <option value="">Pending</option>
+                            <option value="">Verified</option>
+                        </select></td>
+                        <td><select class="form-control form-control-sm" name="" id="">
+                            <option value="">General</option>
+                            <option value="">Co-Admin</option>
+                        </select></td>
+                        <td colspan="3" style="text-align:center">
+                            <input class="btn btn-success btn-sm" type="submit" value="Submit">
+                        </td>
+                    </tr> -->
+                    
+                    <tr *ngFor="let val of Users | filter:searchText | 
+                    paginate: { id: 'listing_pagination', itemsPerPage: 3, currentPage: page, totalItems:totalRecords } ; let i = index">
+                        <th>{{i+1}}</th>
+                        <td>{{val.uName}}</td>
+                        <td>{{val.uEmailid}}</td>
+                       
+                        <td>
+                            
+                            <input type="number" style="display:none" name="uId" #uId="ngModel" [(ngModel)]='val.uId'>
+                            <span *ngIf="val.uVerification == 'pending       '">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-outline-warning btn-sm active">Pending</button>
+                                    <button type="button" (click)="uVverify(val.uId, val.uName, val.uType)" class="btn btn-outline-success btn-sm">Verified</button>
+                                    <button type="button" (click)="uBverify(val.uId, val.uName, val.uType)" class="btn btn-outline-danger btn-sm">Blocked</button>
+                                </div>
+                            </span>
+                            <span *ngIf="val.uVerification == 'verified      '">
+                                <div class="btn-group">
+                                    <button type="button" (click)="uPverify(val.uId, val.uName, val.uType)" class="btn btn-outline-warning btn-sm">Pending</button>
+                                    <button type="button" class="btn btn-outline-success btn-sm active">Verified</button>
+                                    <button type="button" (click)="uBverify(val.uId, val.uName, val.uType)" class="btn btn-outline-danger btn-sm">Blocked</button>
+                                </div>
+                            </span>
+                            <span *ngIf="val.uVerification != 'verified      ' && val.uVerification != 'pending       '">
+                                <div class="btn-group">
+                                    <button type="button" (click)="uPverify(val.uId, val.uName, val.uType)" class="btn btn-outline-warning btn-sm">Pending</button>
+                                    <button type="button" (click)="uBverify(val.uId, val.uName, val.uType)" class="btn btn-outline-success btn-sm">Verified</button>
+                                    <button type="button" class="btn btn-outline-danger btn-sm active">Blocked</button>
+                                </div>
+                            </span>
+                            <!-- <select class="custom-select" name="uVerification" #uVerification="ngModel" [(ngModel)]="val.uVerification">
+                                <option value="pending       ">Pending</option>
+                                <option value="verified      ">Verified</option>
+                            </select> -->
+                        </td>
+                        <td>
+                            <span *ngIf="val.uType != 'coadmin       ' && val.uType != 'admin         '">
+                            <div class="btn-group">
+                                <input type="button" class="btn btn-outline-success btn-sm active" value="General">
+                                <input type="button" (click)="ucoutype(val.uId, val.uName, val.uVerification)" class="btn btn-outline-success btn-sm" value="Co-Admin">
+                                <input type="button" (click)="uautype(val.uId, val.uName, val.uVerification)" class="btn btn-outline-success btn-sm" value="Admin">
+                            </div>
+                            </span>
+                            <span *ngIf="val.uType == 'coadmin       '">
+                                <div class="btn-group">
+                                    <input type="button" (click)="ugutype(val.uId, val.uName, val.uVerification)" class="btn btn-outline-success btn-sm" value="General">
+                                    <input type="button" class="btn btn-success btn-sm active" value="Co-Admin">
+                                    <input type="button" (click)="uautype(val.uId, val.uName, val.uVerification)" class="btn btn-outline-success btn-sm" value="Admin">
+                                </div>
+                            </span>
+                            <span *ngIf="val.uType == 'admin         '">
+                                <div class="btn-group">
+                                    <input type="button" (click)="ugutype(val.uId, val.uName, val.uVerification)" class="btn btn-outline-success btn-sm" value="General">
+                                    <input type="button" (click)="ucoutype(val.uId, val.uName, val.uVerification)" class="btn btn-outline-success btn-sm" value="Co-Admin">
+                                    <input type="button" class="btn btn-outline-success btn-sm active" value="Admin">
+                                </div>
+                            </span>
+                            <!-- <select class="custom-select" name="uType" #uType="ngModel" [(ngModel)]="val.uType">
+                                <option value="null">General</option>
+                                <option value="coadmin       ">Co-Admin</option>
+                                <option value="admin         ">Admin</option>
+                            </select> -->
+                        </td>
+                        <td>
+                            <a href='admin/user-details/{{val.uName}}' data-toggle="tooltip" data-placement="top" title="View Details"><span class="fa fa-list-alt" style="font-size:20px; color:blue; "></span></a>
+                        </td>
+                        <td>
+                            <span class="fa fa-trash" style="color:red" (click)="onDelete(val.uId)"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="8" class="table-secondary">
+                        <pagination-controls id="listing_pagination" maxSize="5" directionLinks="True" (pageChange)="page =$event">
+
+                        </pagination-controls>
+                        </td>
+                    </tr>
+                    
+                </tbody>
+                
+            </table>
+        </div>
+    </div>
+</div>

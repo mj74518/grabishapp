@@ -1,0 +1,178 @@
+<app-header></app-header>
+
+<div class="container" style="background-color: #1289A7;">
+    <div class="row" style="padding: 2%;">
+        <div class="col col-md-12 col-lg-8">
+            <!-- <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                <form class="form-inline">
+                    
+                    <button class="btn btn-outline-success" type="submit">
+                      <i class="fa fa-search"></i>
+                    </button>
+                </form>
+            </div> -->
+            <div class="form-group has-search myhoverdiv">
+                <span class="fa fa-search form-control-feedback"></span>
+                <input type="text" class="form-control" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="What Ae You Looking For?">
+              </div>
+            <div class="row dhoverhide">
+                <div class="col m-lg-2" id="recentadds" style="background-color: #2c2c54; padding: 16px; border-radius: 4px;">
+
+                    <div class="row" style="display: flex; justify-content: center;" *ngIf="movieLatest != null">
+                       
+                        <span *ngFor="let val of movieLatest.slice(0,12); let i = index">
+                            <span *ngIf="val.typeId == '1' || val.typeId == '2' || val.typeId == '5'">
+                            <a title="{{val.itmName}}" href="movie-description/{{val.itmId}}">
+                                <img class="movielogo" src="{{val.posterImg}}" frameborder="0" allowfullscreen>
+                            </a>
+                            </span>
+                            <span *ngIf="val.typeId == '3' || val.typeId == '4' || val.typeId == '6'">
+                            <a title="{{val.itmName}}" href="show-description/{{val.itmId}}">
+                                <img class="movielogo" src="{{val.posterImg}}" frameborder="0" allowfullscreen>
+                            </a>
+                            </span>
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col m-lg-2" style="background-color: #2c2c54; padding: 2%; border-radius: 4px;" *ngIf="movieLatest != null">
+
+                    <!-- <div *ngFor="let val2 of movieLatest.slice(0,10)" class="mb-3"> -->
+                        <div *ngFor="let val2 of data | filter:searchText | 
+                        paginate: { id: 'listing_pagination', itemsPerPage: 10, currentPage: page, totalItems:totalRecords } " class="mb-3">
+                       
+                        <span class="movielinks" *ngIf="val2.typeId == '1' || val2.typeId == '2' || val2.typeId == '5'">
+                            <div class="row">
+                                <div class="col col-md-10">
+                                    <a style="text-decoration: none;color:#fff;font-size:15px;"
+                                         href="movie-description/{{val2.itmId}}">
+                                         <h5>{{val2.itmName }} {{val2.category}}</h5>
+                                    </a>
+                                    <p>{{val2.dateAdded | date : "fullDate"}} {{val2.generes}}</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col col-md-3">
+                                    <a href="movie-description/{{val2.itmId}}">
+                                    <img class="movielogo2" src="{{val2.posterImg}}">
+                                    </a>
+                                </div>
+                                <div class="col col-md-9">
+                                    <p>{{val2.showDesc}}</p>
+                                    <a href="movie-description/{{val2.itmId}}">
+                                        <button type="text" class="btn btn-primary">Download</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </span>
+                        <span class="movielinks" *ngIf="val2.typeId == '3' || val2.typeId == '4' || val2.typeId == '6'">
+                            <div class="row">
+                                <div class="col col-md-10">
+                                    <a style="text-decoration: none;color:#fff;font-size:15px;"
+                                         href="show-description/{{val2.itmId}}">
+                                         <h5>{{val2.itmName }} {{val2.category}}</h5>
+                                    </a>
+                                    <p>{{val2.dateAdded | date : "fullDate"}} {{val2.generes}}</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col col-md-3">
+                                    <a href="show-description/{{val2.itmId}}">
+                                    <img class="movielogo2" src="{{val2.posterImg}}">
+                                    </a>
+                                </div>
+                                <div class="col col-md-9">
+                                    <p>{{val2.showDesc}}</p>
+                                    <a href="show-description/{{val2.itmId}}">
+                                        <button type="text" class="btn btn-primary">Download</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </span>
+                        <hr>
+                    </div>
+                    <nav style="border-top: 2px solid  tomato!important;">
+                        
+                    <pagination-controls id="listing_pagination" maxSize="5" directionLinks="True" (pageChange)="page =$event">
+
+                    </pagination-controls>
+                </nav>
+                    
+                    <!-- <nav style="border-top: 2px solid  tomato!important;"> -->
+                        <!-- <ul class="pagination justify-content-center pg-dark">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1">Previous</a>
+                            </li>
+                            <li class="page-item"><a class="page-link active" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">4</a></li>
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#">...</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">65</a></li>
+                            <li class="page-item"><a class="page-link" href="#">66</a></li>
+                            <li class="page-item"><a class="page-link" href="#">67</a></li>
+                            <li class="page-item"><a class="page-link" href="#">68</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Next</a>
+                            </li>
+                        </ul> -->
+                        
+                    <!-- </nav> -->
+
+               
+                </div>
+
+            </div>
+        </div>
+        <div class="col col-lg-4" id="relateditem">
+            <h4>Random Posts</h4>
+            <div style="padding:4% 4% 0% 4%; background-color: #2c2c54; border-radius: 4px;" *ngIf="movieRandom != null">
+                <div style="color:whitesmoke;" *ngFor="let val of movieRandom.slice(0,15)">
+                    <div class="row">
+                        <div class="col col-md-4">
+                            <span class="movielinks" *ngIf="val.typeId == '1' || val.typeId == '2' || val.typeId == '5'">
+                            <a class="" title="{{val.itmName}}" href="movie-description/{{val.itmId}}">
+                                <img style="width:90px; height:140px" src="{{val.posterImg}}">
+                            </a>
+                            </span>
+                            <span *ngIf="val.typeId == '3' || val.typeId == '4' || val.typeId == '6'">
+                            <a class="" title="{{val.itmName}}" href="show-description/{{val.itmId}}">
+                                <img style="width:90px; height:140px" src="{{val.posterImg}}">
+                            </a>
+                            </span>
+                        </div>
+                        <div class="col col-md-8" >
+                            <span *ngIf="val.typeId == '1' || val.typeId == '2' || val.typeId == '5'">
+                            <a class="" style="text-decoration: none;color:#fff;font-size:15px;" 
+                                title="{{val.itmName}}" href="movie-description/{{val.itmId}}">
+                            <div>
+                                <h6>{{val.itmName}} {{val.category}}</h6>
+                                <small><i class="fa fa-clock-o"></i> {{val.dateAdded | date : "fullDate"}}</small>
+                            </div></a>
+                            </span>
+                            <span *ngIf="val.typeId == '3' || val.typeId == '4' || val.typeId == '6'">
+                            <a class="" style="text-decoration: none;color:#fff;font-size:15px;" 
+                                title="{{val.itmName}}" href="show-description/{{val.itmId}}">
+                            <div>
+                                <h6>{{val.itmName}} {{val.category}}</h6>
+                                <small><i class="fa fa-clock-o"></i> {{val.dateAdded | date : "fullDate"}}</small>
+                            </div></a>
+                            </span>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <hr style="border: 2px solid  tomato!important;">
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<app-footer></app-footer>

@@ -1,0 +1,66 @@
+
+
+
+.pagination a {
+    background-color: #2d3436;
+    color: white;
+    border-color: #2d3436;
+}
+
+.pagination .active {
+    background-color: #3742fa;
+    color: white;
+    border-color: #3742fa;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #57606f;
+}
+
+.movielogo {
+    width: 110px;
+    height: 160px;
+    cursor: pointer;
+    -webkit-transition: all 250ms ease-in-out;
+    -moz-transition: all 250ms ease-in-out;
+    -ms-transition: all 250ms ease-in-out;
+    transition: all 250ms ease-in-out;
+}
+
+.movielogo:hover {
+    -webkit-filter: brightness(50%);
+    -moz-filter: brightness(50%);
+    -ms-filter: brightness(50%);
+    filter: brightness(50%);
+}
+
+.movielogo2 {
+    width: 100%;
+    cursor: pointer;
+    -webkit-transition: all 250ms ease-in-out;
+    -moz-transition: all 250ms ease-in-out;
+    -ms-transition: all 250ms ease-in-out;
+    transition: all 250ms ease-in-out;
+}
+
+.movielogo2:hover {
+    -webkit-filter: brightness(50%);
+    -moz-filter: brightness(50%);
+    -ms-filter: brightness(50%);
+    filter: brightness(50%);
+}
+
+.movielinks {
+    text-decoration: none;
+    color: cornsilk;
+}
+
+.dhoverhide {
+    display: block;
+    
+  }
+      
+  .myhoverdiv:hover + .dhoverhide {
+    display: none;
+    
+  }

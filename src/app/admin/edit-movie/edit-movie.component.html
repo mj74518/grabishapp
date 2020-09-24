@@ -1,0 +1,261 @@
+<div class="d-flex" id="wrapper">
+    <app-sidebar></app-sidebar>
+    <div id="page-content-wrapper">
+        <app-adminheader></app-adminheader>
+        <div class="container-fluid">
+            <div class="justify-content-center" style=" padding: 2% ; border-radius: 5px;">
+
+
+                <div class="row" *ngIf="movieInfo" style="background-color:floralwhite; padding: 2% ; border-radius: 5px;">
+
+                    <div class="col col-md-12">
+
+                        <div style="padding: 1% 4% 2% 4%; border: 1px solid #ccc!important;">
+                            <h4 style="text-align: center;">Update Links</h4> <br>
+
+
+                            <div style="padding: 0% 2% 2% 2%;">
+                                <div class="row" style="border: 1px solid #ccc!important; padding: 2% 1% 2% 1%;">
+                                    <div class="col col-md-4">
+                                        <a class="" title="{{movieInfo.itmName}}" href="{{movieInfo.posterImg}}">
+                                            <img style="width:180px; height:240px" src="{{movieInfo.posterImg}}">
+                                        </a>
+                                    </div>
+                                    <div class="col col-md-8">
+                                        <div>
+                                            <h4>{{movieInfo.itmName}} {{movieInfo.category}}</h4>
+                                            <small class="post-meta">
+                                                <span class="tie-date">
+                                                    <i class="fa fa-clock-o"></i>
+                                                    {{movieInfo.dateAdded | date : "fullDate"}}
+                                                </span>
+                                            </small><br>
+                                            <small><i class="fa fa-folder"></i> {{movieInfo.generes}}</small>
+                                            <br>
+                                            <hr>
+                                        </div>
+                                        <div>
+                                            {{movieInfo.showDesc}}<br>
+                                            <span class=""><strong> Actors: </strong>{{movieInfo.stars}}</span><br>
+                                        </div>
+
+                                    </div>
+                                </div><br>
+                                <div class="form-row">
+                                    <div class="col col-11">
+                                        <table class="table table-hover table-sm table-responsive-sm-md-lg">
+                                            <thead class="thead-dark">
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Quality</th>
+                                                    <th scope="col">Size</th>
+                                                    <!-- <th scope="col">Date Added</th> -->
+                                                    <th scope="col">Links</th>
+                                                    <th scope="col">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody style="background-color:cornsilk;">
+                                                <tr *ngFor="let val of movieInfo['itmLocation']; let i = index">
+                                                    <th>{{i+1}}</th>
+                                                    <td>{{val.itemRes}}</td>
+                                                    <td>{{val.itemSize}}</td>
+                                                    <!-- <td>{{val.dateAdded | date : "mediumDate"}}</td> -->
+                                                    <td>
+                                                        <span *ngIf="val.link1">
+                                                            <a href="{{val.link1}}" style="text-decoration: none;">
+                                                                <span
+                                                                    *ngIf="val.link1.split('/')[2] == 'gdfiles.org'">
+
+                                                                    <img style="width:20px;"
+                                                                        src="/assets/img/gdrive.png">
+                                                                    <!-- GDrive -->
+
+                                                                </span>
+                                                        <span *ngIf="val.link1.split('/')[2] == 'drive.google.com'">
+
+                                                                    <img style="width:20px;"
+                                                                        src="/assets/img/gdrive.png">
+                                                                    <!-- GDrive -->
+
+                                                                </span>
+                                                        <span *ngIf="val.link1.split('/')[2] == 'mega.nz'">
+
+                                                                    <img style="width:20px;"
+                                                                        src="/assets/img/mega-icon.png">
+                                                                    <!-- Mega -->
+
+                                                                </span>
+                                                        <span *ngIf="val.link1 != null
+                                                                            && val.link1.split('/')[2] != 'mega.nz' 
+                                                                            && val.link1.split('/')[2] != 'drive.google.com' 
+                                                                            && val.link1.split('/')[2] != 'gdfiles.org'">
+                                                                    <img style="width:20px;"
+                                                                        src="/assets/img/others-icon-png-4.png">
+                                                                </span>
+                                                        </a>&nbsp;
+                                                        </span>
+                                                        <span *ngIf="val.link2">
+                                                            <a href="{{val.link2}}" style="text-decoration: none;">
+                                                                <span
+                                                                    *ngIf="val.link2.split('/')[2] == 'gdfiles.org'">
+
+                                                                    <img style="width:20px;"
+                                                                        src="/assets/img/gdrive.png">
+                                                                    <!-- GDrive -->
+
+                                                                </span>
+                                                        <span *ngIf="val.link2.split('/')[2] == 'drive.google.com'">
+
+                                                                    <img style="width:20px;"
+                                                                        src="/assets/img/gdrive.png">
+                                                                    <!-- GDrive -->
+
+                                                                </span>
+                                                        <span *ngIf="val.link2.split('/')[2] == 'mega.nz'">
+
+                                                                    <img style="width:20px;"
+                                                                        src="/assets/img/mega-icon.png">
+                                                                    <!-- Mega -->
+
+                                                                </span>
+                                                        <span *ngIf="val.link2 != null
+                                                                            && val.link2.split('/')[2] != 'mega.nz' 
+                                                                            && val.link2.split('/')[2] != 'drive.google.com' 
+                                                                            && val.link2.split('/')[2] != 'gdfiles.org'">
+                                                                    <img style="width:20px;"
+                                                                        src="/assets/img/others-icon-png-4.png">
+                                                                </span>
+                                                        </a>&nbsp;
+                                                        </span>
+                                                        <span *ngIf="val.Link3">
+                                                            <a href="{{val.link3}}" style="text-decoration: none;">
+                                                                <span
+                                                                    *ngIf="val.link3.split('/')[2] == 'gdfiles.org'">
+
+                                                                    <img style="width:20px;"
+                                                                        src="/assets/img/gdrive.png">
+                                                                    <!-- GDrive -->
+
+                                                                </span>
+                                                        <span *ngIf="val.link3.split('/')[2] == 'drive.google.com'">
+
+                                                                    <img style="width:20px;"
+                                                                        src="/assets/img/gdrive.png">
+                                                                    <!-- GDrive -->
+
+                                                                </span>
+                                                        <span *ngIf="val.link3.split('/')[2] == 'mega.nz'">
+
+                                                                    <img style="width:20px;"
+                                                                        src="/assets/img/mega-icon.png">
+                                                                    <!-- Mega -->
+
+                                                                </span>
+                                                        <span *ngIf="val.link3 != null
+                                                                                && val.link3.split('/')[2] != 'mega.nz' 
+                                                                                && val.link3.split('/')[2] != 'drive.google.com' 
+                                                                                && val.link3.split('/')[2] != 'gdfiles.org'">
+                                                                    <img style="width:20px;"
+                                                                        src="/assets/img/others-icon-png-4.png">
+                                                                </span>
+                                                        </a>&nbsp;
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <!-- <a href='admin/edit-link/{{val.linkId}}'>
+                                                            <button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Delete Account">
+                                                                <span class="fa fa-pencil"></span>
+                                                                Edit
+                                                            </button>
+                                                        </a>&nbsp; -->
+                                                        
+                                                        
+                                                            <button class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete Link">
+                                                                <span class="fa fa-trash" (click)="onDelete(val.linkId)"> Remove</span>
+                                                            </button>
+                                                      
+                                                    </td>
+
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div style="border: 1px solid  #ccc!important;">
+                                <div style="padding:4%;">
+                                    <h4>Add Links</h4> <br>
+                                    <form [formGroup]="service.formAddMlink" autocomplete="off" (submit)="onSubmit()">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-2">
+                                                <select class="form-control form-control-sm" name="" id="" formControlName="Itemres">
+                                                    <option value="">Select</option>
+                                                    <option value="480p x264">480p x264</option>
+                                                    <option value="480p x265">480p x265</option>
+                                                    <option value="720p x264">720p x264</option>
+                                                    <option value="720p x265">720p x265</option>
+                                                    <option value="1080p x264">1080p x264</option>
+                                                    <option value="1080p x265">1080p x265</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-3">
+
+                                                <div class="input-group">
+                                                    <input type="number" min="1" length="4" max="1022" class="form-control form-control-sm" placeholder="Size" formControlName="Itemsize">
+                                                    <div class="input-group-append col-xs-1">
+                                                        <select class="form-control form-control-sm" name="" id="" formControlName="Resunit">
+                                                            <option value="MB">MB</option>
+                                                            <option value="GB">GB</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-10">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control form-control-sm" placeholder="Paste Link1 Here...." formControlName="link1">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control form-control-sm" placeholder="Paste Link2 Here...." formControlName="link2">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control form-control-sm" placeholder="Paste Link3 Here...." formControlName="link3">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control form-control-sm" placeholder="Paste Link4 Here...." formControlName="link4">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control form-control-sm" placeholder="Paste Link5 Here...." formControlName="link5">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control form-control-sm" placeholder="Paste Link6 Here...." formControlName="link6">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-1">
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-success btn-sm">Save</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

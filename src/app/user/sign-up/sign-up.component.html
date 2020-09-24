@@ -1,0 +1,48 @@
+<app-header></app-header>
+<div class="wrapper">
+    <div class="wrapped-div">
+        <div class="tab-header">
+            <h2 routerLink='/user/sign-in'>Sign In</h2>
+            <h2 routerLink='/user/sign-up' routerLinkActive='active'>Sign Up</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <form [formGroup]="service.formModel" autocomplete="off" (submit)="onSubmit()">
+                    <div class="form-group required">
+                        <label>Email</label>
+                        <input type="email" class="form-control" formControlName="UEmailid" required>
+                        <label class="text-danger" *ngIf="service.formModel.get('UEmailid').touched && service.formModel.get('UEmailid').errors?.required">This
+                    field is mandatory.</label>
+                        <label class="text-danger" *ngIf="service.formModel.get('UEmailid').touched && service.formModel.get('UEmailid').errors?.email">Invalid
+                    email address.</label>
+                    </div>
+
+                    <div formGroupName="Passwords">
+                        <div class="form-group required">
+                            <label>New Password</label>
+                            <input type="password" class="form-control" formControlName="UPassword">
+                            <label class="text-danger" *ngIf="service.formModel.get('Passwords.UPassword').touched && service.formModel.get('Passwords.UPassword').errors?.required">This
+                      field is mandatory.</label>
+                            <label class="text-danger" *ngIf="service.formModel.get('Passwords.UPassword').touched && service.formModel.get('Passwords.UPassword').errors?.minlength">Minimum
+                      4 characters required.</label>
+                        </div>
+                        <div class="form-group required">
+                            <label>Confirm Password</label>
+                            <input type="password" class="form-control" formControlName="UCPassword">
+                            <label class="text-danger" *ngIf="service.formModel.get('Passwords.UCPassword').touched && service.formModel.get('Passwords.UCPassword').errors?.required">This
+                      field is mandatory.</label>
+                            <label class="text-danger" *ngIf="service.formModel.get('Passwords.UCPassword').touched && service.formModel.get('Passwords.UCPassword').errors?.passwordMismatch">Confirm
+                      Password does not match.</label>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-8 offset-md-2">
+                            <button type="submit" class="btn btn-lg btn-block" [disabled]="!service.formModel.valid">Sign Up</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

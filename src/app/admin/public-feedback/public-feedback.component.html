@@ -1,0 +1,49 @@
+<div class="d-flex" id="wrapper">
+    <app-sidebar></app-sidebar>
+    <div id="page-content-wrapper">
+        <app-adminheader></app-adminheader>
+        <div class="container-fluid">
+            <h1 class="mt-4">Public Feedback</h1>
+            <div class="form-group has-search">
+                <span class="fa fa-search form-control-feedback"></span>
+                <input type="text" class="form-control" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search">
+            </div>
+            <table style="cursor: pointer;" class="table table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Item Name</th>
+                        <th scope="col">Feedback</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody style="background-color:cornsilk;">
+                    <tr *ngFor="let val of Users | filter:searchText | 
+                    paginate: { id: 'listing_pagination', itemsPerPage: 3, currentPage: page, totalItems:totalRecords } ; let i = index">
+                        <th>{{i+1}}</th>
+                        <td>{{val.pfFname}}</td>
+                        <td>{{val.pfEmail}}</td>
+                        <td>{{val.pfItm.itmName}}</td>
+                        <td>{{val.pfComment}}</td>
+
+                      
+                        <td>
+                            <span class="fa fa-trash" style="color:red" data-toggle="tooltip" data-placement="top" title="Remove Feedback" (click)="onDelete(val.pfId)"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="8" class="table-secondary">
+                        <pagination-controls id="listing_pagination" maxSize="5" directionLinks="True" (pageChange)="page =$event">
+
+                        </pagination-controls>
+                        </td>
+                    </tr>
+                    
+                </tbody>
+                
+            </table>
+        </div>
+    </div>
+</div>

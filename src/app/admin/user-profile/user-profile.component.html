@@ -1,0 +1,153 @@
+<div class="d-flex" id="wrapper">
+    <app-sidebar></app-sidebar>
+    <div id="page-content-wrapper">
+        <app-adminheader></app-adminheader>
+        <div class="container">
+            <div class="col mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="e-profile" *ngIf="userProfile">
+                            <div class="row">
+                                <div class="col-12 col-sm-auto mb-3">
+                                    <div class="mx-auto" style="width: 140px;">
+                                        <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
+                                            <!-- <span style="color: rgb(166, 168, 170); font: bold 8pt Arial;">140x140</span> -->
+                                            <img src="{{imgpath}}"  style="width:140px;height:140px; border-radius: 50%;">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                                    <div class="text-center text-sm-left mb-2 mb-sm-0">
+                                        <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{userInfo.uiFname}} {{userInfo.uiMdname}} {{userInfo.uiLname}}</h4>
+                                        <p class="mb-0">@{{userProfile.uName}}</p>
+                                        <!-- <div class="text-muted"><small>Last seen 2 hours ago</small></div> -->
+                                        <div class="mt-2">
+                                            <!-- <button class="btn btn-primary" type="file">
+                                                <i class="fa fa-fw fa-camera"></i>
+                                                <span>Change Photo</span>
+                                            </button>
+                                            <div class="image-upload">
+                                                <label for="file-input" class="btn btn-primary">
+                                                    <i class="fa fa-fw fa-camera"></i> Change Picture
+                                                </label>
+
+                                                <input id="file-input" type="file" />
+                                            </div> -->
+                                            <form #imageForm=ngForm (ngSubmit)="OnSubmit(uiId,Image)">
+                                                <img [src]="imageUrl"  style="width:140px;height:140px">
+                                                <input type="file" #Image accept="image/*" (change)="handleFileInput($event.target.files)">
+                                                <input style="display: none;" type="number" name="uiId" #uiId="ngModel" [(ngModel)]="userProfile.uId">
+                                                <button type="submit" class="btn-large btn-submit" [disabled]="Image.value=='' || !imageForm.valid">Submit</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="text-center text-sm-right">
+                                        <span class="badge badge-secondary">Profile Verification</span>
+                                        <div class="text-muted"><small><p style="color:green; font-style: oblique;"><b>{{userProfile.uVerification}}</b></p></small></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <ul class="nav nav-tabs">
+                                <li class="nav-item"><a href="" class="active nav-link">Settings</a></li>
+                            </ul> -->
+                            <div class="tab-content pt-3">
+                                <div class="tab-pane active">
+                                    <!-- <form [formGroup]="service.formUpdateprofile" autocomplete="off" (submit)="onSubmit()"> -->
+                                        <form #form="ngForm" (submit)="onSubmit(form)">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="row">
+                                                    <div class="col col-3">
+                                                        <div class="form-group">
+                                                            <label>Username</label>
+                                                            <!-- <input class="form-control" type="text" name="username" placeholder="Username" value="{{userProfile.uName}}" disabled> -->
+                                                            <input class="form-control" type="text" name="uName" #uName="ngModel" [(ngModel)]="userProfile.uName" readonly>
+                                                            <input style="display: none;" type="number" name="uiId" #uiId="ngModel" [(ngModel)]="userProfile.uId">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label>First <span class="d-none d-xl-inline"></span>Name</label>
+                                                            <!-- <input class="form-control" type="text" name="name" placeholder="First Name" value="{{userInfo.uiFname}}"> -->
+                                                            <input class="form-control" type="text" name="uiFname" #uiFname="ngModel" [(ngModel)]="userInfo.uiFname" placeholder="Enter First Name">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label>Middle <span class="d-none d-xl-inline"></span>Name</label>
+                                                            <!-- <input class="form-control" type="text" name="username" placeholder="Username" value="{{userInfo.uiMdname}}"> -->
+                                                            <input class="form-control" type="text" name="uiMdname" #uiMdname="ngModel" [(ngModel)]="userInfo.uiMdname" placeholder="Enter Middle Name">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label>Last <span class="d-none d-xl-inline"></span>Name</label>
+                                                            <!-- <input class="form-control" type="text" name="username" placeholder="Username" value="{{userInfo.uiLname}}"> -->
+                                                            <input class="form-control" type="text" name="uiLname" #uiLname="ngModel" [(ngModel)]="userInfo.uiLname" placeholder="Enter Last Name">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label>Email</label>
+                                                            <!-- <input class="form-control" type="text" placeholder="Email" value="{{userProfile.uEmailid}}"> -->
+                                                            <input class="form-control" type="text" name="uEmailid" #uEmailid="ngModel" [(ngModel)]="userProfile.uEmailid" placeholder="Enter Email id" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12 col-sm-6 mb-3">
+                                               
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label>Country</label>
+                                                            <!-- <input class="form-control" type="text" placeholder="Country" value="{{userInfo.uiCountry}}"> -->
+                                                            <input class="form-control" type="text" name="uiCountry" #uiCountry="ngModel" [(ngModel)]="userInfo.uiCountry" placeholder="Enter Country Name">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label>State</label>
+                                                            <!-- <input class="form-control" type="text" placeholder="State" value="{{userInfo.uiState}}"> -->
+                                                            <input class="form-control" type="text" name="uiState" #uiState="ngModel" [(ngModel)]="userInfo.uiState" placeholder="Enter State Name">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label>City</label>
+                                                            <!-- <input class="form-control" type="text" placeholder="City" value="{{userInfo.uiCity}}"> -->
+                                                            <input class="form-control" type="text" name="uiCity" #uiCity="ngModel" [(ngModel)]="userInfo.uiCity" placeholder="Enter City Name">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col d-flex justify-content-end">
+                                                <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Save Changes</button>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

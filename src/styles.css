@@ -1,0 +1,283 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+/* You can add global styles to this file, and also import other style files */
+
+body {
+    /* background-color: #a29bfe; */
+    /* background-image: url('/assets/img/mudassir.jpg');
+    background-size: cover; */
+    background-color: #C4E538;
+    overflow-x: hidden;
+    
+    /* text-shadow: 1px 1px 1px #000; */
+}
+
+a {
+    cursor: pointer;
+}
+
+/* .ngx-pagination {
+    text-align: center;
+    cursor: pointer;
+  } */
+  ul.ngx-pagination{
+      margin: 0;
+      padding: 10px;
+      
+  }
+  pagination-template > ul{
+      text-align: center;
+     
+      
+  }
+  pagination-template > ul > li {
+    background-color: snow;
+    border-radius: 40px;
+   
+  }
+  /* .ngx-pagination{
+      background-color: violet;
+  } */
+  .ngx-pagination .current,
+  .btn-info {
+    background: #17a2b8 !important;
+    border: transparent !important;
+    /* border-radius: 20px !important; */
+    
+  }
+  
+  .ngx-pagination .current:hover {
+    background: teal;
+    border-radius: 20px !important; 
+    border: transparent !important;
+  }
+
+table {
+    /* border-collapse: collapse; */
+    border-radius: 1em;
+    overflow: hidden;
+}
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+      
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+blockquote {
+    background: #f9f9f9;
+    border-left: 10px solid #ccc;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    quotes: "\201C""\201D""\2018""\2019";
+  }
+  blockquote:before {
+    color: #ccc;
+    content: open-quote;
+    font-size: 4em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
+  }
+  blockquote p {
+    display: inline;
+  }
+
+#toast-container>div {
+    opacity: 1;
+}
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    padding: 20px;
+}
+
+.wrapped-div {
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
+    background: #2e3137;
+    padding: 30px;
+    width: 90%;
+    max-width: 450px;
+    position: relative;
+    padding: 0px;
+    -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+}
+
+
+/* Tabs */
+
+.tab-header {
+    text-align: center;
+}
+
+.tab-header h2.active {
+    color: #fff;
+    border-bottom: 4px solid #fff;
+}
+
+.navbar {
+    padding: 0.4%;
+}
+
+.navbar-brand {
+    padding: 0%;
+}
+
+.nav-link:hover {
+    background-color: #d1d8e0;
+}
+
+.list-group-item:hover {
+    border-radius: 50px;
+}
+
+.tab-header h2 {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    display: inline-block;
+    padding: 30px 40px 10px 40px;
+    cursor: pointer;
+    color: #545d6a;
+    border-bottom: 2px solid #545d6a;
+}
+
+.tab-header h2:focus {
+    outline: none;
+}
+
+form {
+    margin: 0px 16px;
+}
+
+div.form-group input.invalid {
+    border: 1px solid #dc3545;
+}
+
+div.form-group label:first-child {
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+#sidebar-wrapper {
+    min-height: 100vh;
+    margin-left: -15rem;
+    -webkit-transition: margin .25s ease-out;
+    -moz-transition: margin .25s ease-out;
+    -o-transition: margin .25s ease-out;
+    transition: margin .25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+    padding: 0.875rem 1.25rem;
+    font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group {
+    width: 15rem;
+}
+
+#page-content-wrapper {
+    min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    margin-left: 0;
+}
+
+@media screen and (max-width: 1000px) {
+    #relateditem {
+        visibility: hidden;
+        overflow: hidden;
+        clear: both;
+        width: 0%;
+        display: none;
+    }
+}
+
+@media screen and (max-width: 770px) {
+    #recentadds {
+        visibility: hidden;
+        clear: both;
+        float: left;
+        margin: 10px auto 5px 20px;
+        width: 28%;
+        display: none;
+    }
+}
+
+@media (min-width: 768px) {
+    #sidebar-wrapper {
+        margin-left: 0;
+    }
+    #page-content-wrapper {
+        min-width: 0;
+        width: 100%;
+    }
+    #wrapper.toggled #sidebar-wrapper {
+        margin-left: -15rem;
+    }
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+    .sidenav a {
+        font-size: 18px;
+    }
+}
+
+.mysidebar {
+    background-color: #F96332;
+    color: white;
+    height: 100%;
+    border-right: 0px solid #dee2e6!important;
+}
+
+.mysidebar div {
+    background-color: #F96332;
+    color: white;
+    border-color: coral;
+}
+
+.list-group-item {
+    background-color: #F96332;
+    color: white;
+    cursor: pointer;
+}
+
+.checked {
+    color: orange;
+}
+
+.fa-star:hover {
+    color: darkgoldenrod;
+    cursor: pointer;
+}
+
+.image-upload>input {
+    display: none;
+}
+
+.image-upload img {
+    width: 80px;
+    cursor: pointer;
+}

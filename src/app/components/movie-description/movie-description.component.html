@@ -1,0 +1,321 @@
+<app-header></app-header>
+<div *ngIf="movieInfo">
+    <div class="container" style=" padding: 1% 1% 1% 1%; background-color: #d2dae2">
+        <span><a href="index">Home</a></span>
+        <span class="delimiter">-></span>
+        <span *ngIf="genre" ><a href="by-genre/{{genre}}">{{genre}}</a></span>
+        <span class="delimiter">-></span>
+        <span> <a href="movie-description/{{movieInfo.itmId}}">{{movieInfo.itmName}}</a> {{movieInfo.imdbRatings}} / 10 {{movieInfo.category}}
+            <!-- <span *ngFor="let item of movieInfo['itmLocation']; let i = index">
+                {{item.itemRes}}
+                <span *ngIf="movieInfo['itmLocation'].length-1 > i "> &amp; </span>
+        </span> -->
+        </span>
+    </div>
+    <div class="container" style="background-color: #1289A7; padding: 0 0% 0 2%; color:#fff">
+        <div class="row" style="padding: 2%;">
+            <div class="col col-md-12 col-lg-8" style="background-color: #2c2c54; padding: 2%; border-radius: 4px;">
+              
+                    <div>
+                        <h3 class="">
+                            <span>{{movieInfo.itmName}} {{movieInfo.category}}
+                                <!-- <span *ngFor="let item of movieInfo['itmLocation']; let i = index">
+                                    {{item.itemRes}}
+                                    <span *ngIf="movieInfo['itmLocation'].length-1 > i "> &amp; </span>
+                            </span> -->
+                            </span>
+                        </h3>
+                        <small class="post-meta">
+                            <span class="tie-date">
+                                <i class="fa fa-clock-o"></i> {{movieInfo.dateAdded | date : "fullDate"}}
+                            </span>
+                            <span class="post-cats">
+                                <i class="fa fa-folder"></i> {{movieInfo.generes}}
+                            </span>
+                            <!-- <span class="post-comments">
+                                <i class="fa fa-comments"></i>
+                                <a href="#"> 50 Comments</a>
+                            </span> -->
+                        </small>
+                        <hr>
+                        <div style="padding: 2%;">
+                            <div class="row" style="border: 1px solid #ccc!important; padding: 2% 1% 2% 1%;">
+                                <div class="col col-md-4">
+                                    <a class="" title="{{movieInfo.itmName}}" href="{{movieInfo.posterImg}}">
+                                        <img style="width:180px; height:240px" src="{{movieInfo.posterImg}}">
+                                    </a>
+                                </div>
+                                <div class="col col-md-8">
+                                    <div>
+                                        <h4>{{movieInfo.itmName}}</h4>
+                                        <small>{{movieInfo.generes}}</small>
+                                        <br>
+                                        <hr>
+                                    </div>
+                                    <div>
+                                        {{movieInfo.showDesc}}<br>
+                                        <span class=""><strong> Actors: </strong>{{movieInfo.stars}}</span><br>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4" style="border: 1px solid  #ccc!important;">
+                        <div style="padding: 2%;">
+                            <span><strong> Genres : </strong>{{movieInfo.generes}}</span><br>
+                            <span><strong> Date Added: </strong>{{movieInfo.dateAdded | date : "fullDate"}}</span><br>
+                            <span><strong> Language: </strong>{{movieInfo.itemLang}}</span><br>
+                            <span><strong> Rating: </strong>{{movieInfo.imdbRatings}} / 10</span><br>
+                            <span><strong> Trailer: </strong>
+                                <a href="{{movieInfo.trailerUrl}}" data-caption="" title="View Trailer">
+                                    <span style="color: #00e803;">View</span></a>
+                            </span><br>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <div class="row" style="padding: 2%;">
+                            <div class="col col-12" style="border: 1px solid  #ccc!important;">
+                                <div class="row" style="padding: 2%;">
+                                    <div class="col col-1" style="padding: 1%;">
+                                        <i class="fa fa-cloud-download fa-3x" style="color:lime;" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="col col-11">
+
+                                        <div *ngFor="let val of movieInfo['itmLocation'] | orderBy: 'itemRes'; let i = index; val">
+
+                                            <div class="mt-3">
+                                                <div><b>{{val.itemRes}} | {{val.itemSize}}</b></div>
+                                                <span *ngIf="val.link1">
+                                                    <a href="{{val.link1}}" style="text-decoration: none;">
+                                                        <span *ngIf="val.link1.split('/')[2] == 'gdfiles.org'">
+                                                            <button class="btn btn-light btn-sm">
+                                                                <img style="width:20px;" src="/assets/img/gdrive.png">
+                                                                GDrive
+                                                            </button>
+
+                                                        </span>
+                                                <span *ngIf="val.link1.split('/')[2] == 'drive.google.com'">
+                                                            <button class="btn btn-light btn-sm">
+                                                                <img style="width:20px;" src="/assets/img/gdrive.png">
+                                                                GDrive
+                                                            </button>
+                                                        </span>
+                                                <span *ngIf="val.link1.split('/')[2] == 'mega.nz'">
+                                                            <button class="btn btn-light btn-sm">
+                                                                <img style="width:20px;"
+                                                                    src="/assets/img/mega-icon.png">
+                                                                Mega
+                                                            </button>
+                                                        </span>
+                                                <span *ngIf="val.link1 != null
+                                                                    && val.link1.split('/')[2] != 'mega.nz' 
+                                                                    && val.link1.split('/')[2] != 'drive.google.com' 
+                                                                    && val.link1.split('/')[2] != 'gdfiles.org'">
+                                                            <button class="btn btn-light btn-sm">
+                                                                <img style="width:20px;"
+                                                                    src="/assets/img/others-icon-png-4.png">
+                                                                Others
+                                                            </button>
+                                                        </span>
+                                                </a>&nbsp;
+                                                </span>
+                                                <span *ngIf="val.link2">
+                                                    <a href="{{val.link2}}" style="text-decoration: none;">
+                                                        <span *ngIf="val.link2.split('/')[2] == 'gdfiles.org'">
+                                                            <button class="btn btn-light btn-sm">
+                                                                <img style="width:20px;" src="/assets/img/gdrive.png">
+                                                                GDrive
+                                                            </button>
+                                                        </span>
+                                                <span *ngIf="val.link2.split('/')[2] == 'drive.google.com'">
+                                                            <button class="btn btn-light btn-sm">
+                                                                <img style="width:20px;" src="/assets/img/gdrive.png">
+                                                                GDrive
+                                                            </button>
+                                                        </span>
+                                                <span *ngIf="val.link2.split('/')[2] == 'mega.nz'">
+                                                            <button class="btn btn-light btn-sm">
+                                                                <img style="width:20px;"
+                                                                    src="/assets/img/mega-icon.png">
+                                                                Mega
+                                                            </button>
+                                                        </span>
+                                                <span *ngIf="val.link2 != null
+                                                                    && val.link2.split('/')[2] != 'mega.nz' 
+                                                                    && val.link2.split('/')[2] != 'drive.google.com' 
+                                                                    && val.link2.split('/')[2] != 'gdfiles.org'">
+                                                            <button class="btn btn-light btn-sm">
+                                                                <img style="width:20px;"
+                                                                    src="/assets/img/others-icon-png-4.png">
+                                                                Others
+                                                            </button>
+                                                        </span>
+                                                </a>&nbsp;
+                                                </span>
+                                                <span *ngIf="val.Link3">
+                                                    <a href="{{val.link3}}" style="text-decoration: none;">
+                                                        <span *ngIf="val.link3.split('/')[2] == 'gdfiles.org'">
+                                                            <button class="btn btn-light btn-sm">
+                                                                <img style="width:20px;" src="/assets/img/gdrive.png">
+                                                                GDrive
+                                                            </button>
+                                                        </span>
+                                                <span *ngIf="val.link3.split('/')[2] == 'drive.google.com'">
+                                                            <button class="btn btn-light btn-sm">
+                                                                <img style="width:20px;" src="/assets/img/gdrive.png">
+                                                                GDrive
+                                                            </button>
+                                                        </span>
+                                                <span *ngIf="val.link3.split('/')[2] == 'mega.nz'">
+                                                            <button class="btn btn-light btn-sm">
+                                                                <img style="width:20px;"
+                                                                    src="/assets/img/mega-icon.png">
+                                                                Mega
+                                                            </button>
+                                                        </span>
+                                                <span *ngIf="val.link3 != null
+                                                                        && val.link3.split('/')[2] != 'mega.nz' 
+                                                                        && val.link3.split('/')[2] != 'drive.google.com' 
+                                                                        && val.link3.split('/')[2] != 'gdfiles.org'">
+                                                            <button class="btn btn-light btn-sm">
+                                                                <img style="width:20px;"
+                                                                    src="/assets/img/others-icon-png-4.png">
+                                                                Others
+                                                            </button>
+                                                        </span>
+                                                </a>&nbsp;
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="border: 1px solid  #ccc!important;" *ngIf="itemRelated != null"> 
+                        <div style="padding:4%;">
+                            <div class="wp_rp_content">
+                                <h5 class="related_post_title">Related Posts</h5>
+                                <ul class="related_post wp_rp" *ngFor="let val of itemRelated.slice(0,9)">
+                                    <span *ngIf="val.itmId != checkid">
+                                    <li data-position="0" data-poid="in-93510" data-post-type="none">
+                                        <span class="movielinks" *ngIf="val.typeId == '1' || val.typeId == '2' || val.typeId == '5'">
+                                            <a href="movie-description/{{val.itmId}}" class="wp_rp_title">{{val.itmName}} {{val.category}}</a>
+                                        </span>
+                                        <span class="movielinks" *ngIf="val.typeId == '3' || val.typeId == '4' || val.typeId == '6'">
+                                            <a href="show-description/{{val.itmId}}" class="wp_rp_title">{{val.itmName}} {{val.category}}</a>
+                                        </span>
+                                    </li>
+                                    </span>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="padding: 4% 0%;">
+                        <div class="contact-form">
+                            <div class="contact-image">
+                                <i class="fa fa-bandcamp fa-3x" aria-hidden="true"></i>
+                            </div>
+                            <form [formGroup]="service.FBKformModel" autocomplete="off" (submit)="onSubmit()">
+                                <h3>Feedback/Report....</h3>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                        <input type="text" name="PfName" class="form-control" minlength="4" formControlName="PfName" placeholder="Your Name *" value="" />
+                                        <label style="color:#fff200" *ngIf="service.FBKformModel.get('PfName').touched && service.FBKformModel.get('PfName').errors?.required">
+                                            This field is mandatory.
+                                        </label>
+                                        <label style="color:#fff200" *ngIf="service.FBKformModel.get('PfName').touched && service.FBKformModel.get('PfName').errors?.minlength">
+                                            This field should contain atleast 4 Characters.
+                                        </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                        <input type="text" name="PfEmailid" class="form-control" placeholder="Your Email *" formControlName="PfEmailid" required />
+                                        <label style="color:#fff200" *ngIf="service.FBKformModel.get('PfEmailid').touched && service.FBKformModel.get('PfEmailid').errors?.required">
+                                            This field is mandatory.</label>
+                                        <label style="color:#fff200" *ngIf="service.FBKformModel.get('PfEmailid').touched && service.FBKformModel.get('PfEmailid').errors?.email">
+                                            Invalid email address.
+                                        </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                        <textarea name="PfComment" class="form-control" minlength="10" placeholder="Your Message *" minlength="10" formControlName="PfComment" style="width: 100%; height: 150px;">
+                                        </textarea>
+                                        <label style="color:#fff200" *ngIf="service.FBKformModel.get('PfComment').touched && service.FBKformModel.get('PfComment').errors?.required">
+                                            This field is mandatory.
+                                        </label>
+                                        <label style="color:#fff200" *ngIf="service.FBKformModel.get('PfComment').touched && service.FBKformModel.get('PfComment').errors?.minlength">
+                                            This field should contain atleast 10 Characters.
+                                        </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary btn-lg btn-block" [disabled]="!service.FBKformModel.valid">Send Message</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+              
+
+            </div>
+            <div class="col col-lg-4" id="relateditem" *ngIf="itemRandom != null" >
+                <h4>Random Posts</h4>
+                <div style="background-color: #2c2c54; border-radius: 4px;">
+                <div style="padding:2% 4% 1% 4%;" *ngFor="let val of itemRandom.slice(0,10)">
+                    <div class="row">
+                        <div class="col col-md-4">
+                            <span class="movielinks" *ngIf="val.typeId == '1' || val.typeId == '2' || val.typeId == '5'">
+                            <a class="" title="{{val.itmName}}" href="movie-description/{{val.itmId}}">
+                                <img style="width:90px; height:140px" src="{{val.posterImg}}">
+                            </a>
+                            </span>
+                            <span *ngIf="val.typeId == '3' || val.typeId == '4' || val.typeId == '6'">
+                            <a class="" title="{{val.itmName}}" href="show-description/{{val.itmId}}">
+                                <img style="width:90px; height:140px" src="{{val.posterImg}}">
+                            </a>
+                            </span>
+                        </div>
+                        <div class="col col-md-8" >
+                            <span *ngIf="val.typeId == '1' || val.typeId == '2' || val.typeId == '5'">
+                            <a class="" style="text-decoration: none;color:#fff;font-size:15px;" 
+                                title="{{val.itmName}}" href="movie-description/{{val.itmId}}">
+                            <div>
+                                <h6>{{val.itmName}} {{val.category}}</h6>
+                                <small><i class="fa fa-clock-o"></i> {{val.dateAdded | date : "fullDate"}}</small>
+                            </div></a>
+                            </span>
+                            <span *ngIf="val.typeId == '3' || val.typeId == '4' || val.typeId == '6'">
+                            <a class="" style="text-decoration: none;color:#fff;font-size:15px;" 
+                                title="{{val.itmName}}" href="show-description/{{val.itmId}}">
+                            <div>
+                                <h6>{{val.itmName}} {{val.category}}</h6>
+                                <small><i class="fa fa-clock-o"></i> {{val.dateAdded | date : "fullDate"}}</small>
+                            </div></a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <hr style="border: 2px solid  tomato!important;">
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>
